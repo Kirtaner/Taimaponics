@@ -49,7 +49,7 @@ module.exports = function (config) {
     },
   });
 
-  var travis;
+  var travis = {};
 
   if (process.env.TRAVIS) {
       travis.browsers = ['Chrome_travis_ci'];
