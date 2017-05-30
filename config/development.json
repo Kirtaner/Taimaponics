@@ -1,0 +1,22 @@
+{
+    // Server settings
+    "Server": {
+        "port": 3000
+    },
+
+    // Serial port settings
+    "Serial": {
+        "enabled": 0,
+        "port": "/dev/tty.usbserial-A600agc8",
+        "baudrate": 115200,
+        "flowControl": 0,
+        "dataBits": 8,
+        "stopBits": 1,
+        "parity": "none"
+    },
+
+    // Camera settings
+    "Camera": {
+        "enabled": 0
+    }
+}
