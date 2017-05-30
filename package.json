@@ -1,7 +1,7 @@
 {
   "name": "Taimaponics",
   "version": "0.1.0",
-  "license": "MIT",
+  "license": "MPL-2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
