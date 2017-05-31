@@ -1,9 +1,15 @@
 var global = require('./global');
 var config = global.config;
 var sensors;
+var relayStatus = "00000000";
 
 function randomInt (low, high) {
   return Math.floor(Math.random() * (high - low) + low);
+}
+
+// modifies relay activation state list
+function setRelayStatus(relay, mode) {
+    relayStatus = relayStatus.substr(0,relay) + mode + relayStatus.substr(relay+1);
 }
 
 /**
@@ -27,16 +33,29 @@ module.exports = {
     return randomInt(4,9);
   },
 
-  activateRelay: function(relay) {
+  serialCommand: function(command){
+    var commandIntent = command.charAt(0);
 
+    if(commandIntent == 'o') {
+      setRelayStatus(1, command.charAt(1));
+    }
+    if (commandIntent == 'c') {
+      setRelayStatus(0, command.charAt(1));
+    }
+  },
+
+  activateRelay: function(relay) {
+    serialCommand('o'+relay);
+    return relayStatus;
   },
 
   deactivateRelay: function(relay) {
-
+    serialCommand('c'+relay);
+    return relayStatus;
   },
 
   getRelayStatus: function() {
-
+    return relayStatus;
   },
 }
 
