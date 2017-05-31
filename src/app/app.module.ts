@@ -5,10 +5,12 @@ import { HttpModule } from '@angular/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppComponent } from './app.component';
+import { SerialComponent } from './serial/serial.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SerialComponent
   ],
   imports: [
     BrowserModule,

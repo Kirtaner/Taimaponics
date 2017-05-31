@@ -1,18 +1,19 @@
 /**
  * Module dependencies.
  */
-var express = require('express');
-var compress = require('compression');
+const path = require('path');
+const express = require('express');
+const compress = require('compression');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+const expressValidator = require('express-validator');
 // var flash = require('express-flash');
 // var session = require('express-session');
-var bodyParser = require('body-parser');
-var logger = require('morgan');
 // var errorHandler = require('errorhandler');
 // var lusca = require('lusca');
-var dotenv = require('dotenv');
 // var MongoStore = require('connect-mongo')(session);
-var mongoose = require('mongoose');
-var expressValidator = require('express-validator');
 
 /**
  * Global namespace for common modules
@@ -51,10 +52,10 @@ mongoose.connection.on('error', function() {
 /**
  * Create Express and SocketIO server.
  */
-var app = express();
-var server = require('http').createServer(app);
+const app = express();
+const server = require('http').createServer(app);
 global.io = require('socket.io').listen(server);
-var socket = require('./app/socket');
+const socket = require('./app/socket');
 
 /**
  * Express configuration.
@@ -64,6 +65,14 @@ app.use(compress());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Point static path to dist for angular 2
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// catchall non-api route for angular 2
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 
 /**
  * Start Express server.
