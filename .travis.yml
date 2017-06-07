@@ -2,23 +2,26 @@ sudo: required
 dist: trusty
 language: node_js
 node_js:
-  - "8"
-addons:
+- '8'
+addons: 
 apt:
   sources:
-    - google-chrome
+  - google-chrome
   packages:
-    - google-chrome-stable
-    - google-chrome-beta
+  - google-chrome-stable
+  - google-chrome-beta
 before_install:
-  - export CHROME_BIN=chromium-browser
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+- export CHROME_BIN=chromium-browser
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 before_script:
-  - npm install -g @angular/cli
-  - npm install -g karma karma-cli
-  - ng build
+- npm install -g @angular/cli
+- npm install -g karma karma-cli
+- ng build
 script:
-  - ng test --code-coverage --single-run
+- ng test --code-coverage --single-run
 after_script:
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+- cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+notifications:
+  slack:
+    secure: NNHGpv7HVDjRWqcxxWQeVkj/LvOpesNROJ0LFk7yW9sKDY+nBDfvYH2ykKWnpIwgWVQBsEByKT1wZ2IZNA0dvGuACkNb5RMj17GRBW5M7groI2AE1bL/yvBL+tnlvzF9MPPJn00rBiJm3nqLMcgoUTAxm4nZdQg7QmaKRe8ILh1IRXxojdhiv2x9k2UdJ/POiwtifPs/et286RCQ/zFpX2ICZ18aqO1gCSRVerV4jQY4fOiwyQFNRpcO4y8ufRPHbqP80gfsNwcIWI1lMnX4g6z7Jtl3Dx58Kv4kA90hoXnG0VE6PrssIgXln74LnGzgJpDq7yMaEzqDIdcSPSGHUpIKwpeW7wxe0nmqoYpQORGH3b1KY9j9UvPXCiJ8vT0zOP2s2c3yQabRBnmqrXO1vT+DMVmD+bDttllh7Q4lNKB2r0ZFs5DovPFXo2/uqtB2+jJZ3PRt4sfgqXvJaQ13ImBfRuyPDwuWSL63fkYPRwP69gCQVj/c5xZTMVLADNMDUoUVAf3v7w8qM1ZN50Wx2vBjDNh/PBftrLppPLi98rcX+F4iKXbGaQ9UXjCK0M1K8BYcn5xtodZvymPP98iZB+9LbYY6k+9vG73uNUHZ8lK4xDvlW9ElGT74UdQXQhn2xnqKbMukktK9rZY3OR9Gxs6aPngsXmmxw2ZyuLcvhJo=
