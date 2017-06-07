@@ -52,8 +52,10 @@ module.exports = function (config) {
   var travis = {};
 
   if (process.env.TRAVIS) {
-      travis.browsers = ['Chrome_travis_ci'];
-      travis.singleRun = true;
+    travis.browsers = ['Chrome_travis_ci'];
+    travis.singleRun = true;
+    travis.reporters: ['progress', 'coverage-istanbul'];
+
   }
 
   config.set(travis);
