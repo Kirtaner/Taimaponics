@@ -55,7 +55,6 @@ module.exports = function (config) {
     travis.browsers = ['Chrome_travis_ci'];
     travis.singleRun = true;
     travis.reporters = ['progress', 'coverage-istanbul'];
-
   }
 
   config.set(travis);
