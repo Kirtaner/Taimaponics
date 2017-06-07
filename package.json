@@ -4,7 +4,8 @@
   "license": "MPL-2.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "prestart": "ng build",
+    "start": "node app.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
