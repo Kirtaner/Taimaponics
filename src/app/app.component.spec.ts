@@ -5,8 +5,8 @@ import { Router, RouterOutlet } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { NavComponent } from './nav/nav.component';
+import { FooterComponent } from './footer/footer.component';
 
 // class MockRouter { public navigate() {}; }
 
