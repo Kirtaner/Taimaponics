@@ -2,6 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { Router, RouterOutlet } from '@angular/router';
+import { Http, HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -25,7 +26,7 @@ describe('AppComponent', () => {
           // Renderer,
           // {provide: Router,  useClass: MockRouter }
       ],
-      imports: [ RouterTestingModule ]
+      imports: [ RouterTestingModule, HttpModule ]
     }).compileComponents();
   }));
 
