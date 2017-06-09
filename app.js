@@ -9,6 +9,8 @@ const logger = require('morgan');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const expressValidator = require('express-validator');
+const jwt = require('jsonwebtoken');
+const expressjwt = require('express-jwt');
 // var flash = require('express-flash');
 // var session = require('express-session');
 // var errorHandler = require('errorhandler');
@@ -65,6 +67,15 @@ app.use(compress());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Headers
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,x-access-token');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
 
 // Point static path to dist for angular 2
 app.use(express.static(path.join(__dirname, 'dist')));
