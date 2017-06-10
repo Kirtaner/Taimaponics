@@ -1,17 +1,28 @@
+// Angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+
+// Dependencies
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
+// Skeleton
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
 import { HeaderComponent } from './header/header.component';
+import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
-import { SerialComponent } from './serial/serial.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 
+// Pages
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+
+// Services
+import { AuthService } from './auth.service';
+
+// Routing
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent }
   // { path: 'login', component:  },
@@ -23,11 +34,12 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    SerialComponent,
     HeaderComponent,
     FooterComponent,
     NavComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +48,7 @@ const appRoutes: Routes = [
     BsDropdownModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
