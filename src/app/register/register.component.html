@@ -1,3 +1,21 @@
-<p>
-  register works!
-</p>
+<main>
+  <div class="centered-block">
+    <h2>Register</h2>
+    <form (ngSubmit)="registerUser(user)">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="name" id="Name" [(ngModel)]="user.name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Password</label>
+        <input type="password" id="password" [(ngModel)]="user.password" name="password" required>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+    <p>{{message}}</p>
+  </div>
+</main>

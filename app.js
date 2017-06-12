@@ -18,6 +18,12 @@ const expressjwt = require('express-jwt');
 // var MongoStore = require('connect-mongo')(session);
 
 /**
+ * Controllers
+ */
+const user = require('./http/controllers/user');
+
+
+/**
  * Global namespace for common modules
  */
 var global = require('./app/global');
@@ -76,6 +82,9 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
+
+// Authentication
+
 
 // Point static path to dist for angular 2
 app.use(express.static(path.join(__dirname, 'dist')));

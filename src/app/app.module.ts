@@ -24,9 +24,9 @@ import { AuthService } from './auth.service';
 
 // Routing
 const appRoutes: Routes = [
-  { path: '', component: DashboardComponent }
-  // { path: 'login', component:  },
-  // { path: 'logout', component:  },
+  { path: '', component: DashboardComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   // { path: '',   redirectTo: '/', pathMatch: 'full' },
   // { path: '**', component:  }
 ];
