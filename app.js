@@ -83,11 +83,11 @@ app.use(function (req, res, next) {
     next();
 });
 
-// Authentication
-
-
 // Point static path to dist for angular 2
 app.use(express.static(path.join(__dirname, 'dist')));
+
+// Authentication
+app.use('/api/user', user);
 
 // catchall non-api route for angular 2
 app.get('*', (req, res) => {
