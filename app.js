@@ -20,7 +20,7 @@ const expressjwt = require('express-jwt');
 /**
  * Controllers
  */
-const user = require('./http/controllers/user');
+const user = require('./app/controllers/user');
 
 
 /**

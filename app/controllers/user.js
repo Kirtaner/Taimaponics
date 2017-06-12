@@ -1,10 +1,10 @@
-var express = require('express');
-var app = express();
-var router = express.Router();
-var User = require('../../models/user');
-var jwt = require('jsonwebtoken');
-var config = require('../../config/token');
-var auth = require('../middleware/auth');
+const express = require('express');
+const app = express();
+const router = express.Router();
+const User = require('../models/user');
+const jwt = require('jsonwebtoken');
+const auth = require('../middleware/auth');
+const secret = process.env.SECRET;
 
 router.get('/check-state', auth.verifyToken, (req, res) => {
 
@@ -39,7 +39,7 @@ router.post('/register', (req, res) => {
             if( err )
                 throw err;
 
-            let token = jwt.sign(newUser, config.secret, {
+            let token = jwt.sign(newUser, secret, {
               expiresIn : 60*60*24
             });
             let content = {
@@ -83,7 +83,7 @@ router.post('/login', (req, res) => {
       return;
     }
 
-    let token = jwt.sign(user, config.secret, {
+    let token = jwt.sign(user, secret, {
       expiresIn : 60*60*24
     });
     let content = {
