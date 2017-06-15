@@ -4,6 +4,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router, RouterOutlet } from '@angular/router';
 import { Http, HttpModule } from '@angular/http';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { NavComponent } from './nav/nav.component';
@@ -26,7 +28,11 @@ describe('AppComponent', () => {
           // Renderer,
           // {provide: Router,  useClass: MockRouter }
       ],
-      imports: [ RouterTestingModule, HttpModule ]
+      imports: [
+        RouterTestingModule,
+        HttpModule,
+        NgbModule.forRoot(),
+      ]
     }).compileComponents();
   }));
 

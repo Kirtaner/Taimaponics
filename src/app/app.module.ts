@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
 // Dependencies
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Skeleton
 import { AppComponent } from './app.component';
@@ -45,7 +45,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    BsDropdownModule.forRoot(),
+    NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
   providers: [AuthService],
