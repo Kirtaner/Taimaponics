@@ -17,7 +17,7 @@ before_install:
 before_script:
 - npm install -g @angular/cli
 - npm install -g karma karma-cli
-# - ng build
+- ng build
 script:
 - ng test --code-coverage --single-run
 after_script:

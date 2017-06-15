@@ -13,11 +13,11 @@ export class SerialService {
 
   constructor() { }
 
-  relayOn(relay){
+  relayOn(relay) {
     this.socket.emit('relayOn', relay);
   }
 
-  relayOff(relay){
+  relayOff(relay) {
     this.socket.emit('relayOff', relay);
   }
 
