@@ -15,6 +15,11 @@
         "parity": "none"
     },
 
+    // Data logger settings
+    "Logger": {
+        "enabled": 1
+    },
+
     // Camera settings
     "Camera": {
         "enabled": 0

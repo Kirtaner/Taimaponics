@@ -18,17 +18,16 @@ const expressjwt = require('express-jwt');
 // var MongoStore = require('connect-mongo')(session);
 
 /**
- * Controllers
+ * REST Controllers
  */
 const user = require('./app/controllers/user');
-
 
 /**
  * Global namespace for common modules
  */
 var global = require('./app/global');
 global.config = require('config');
-var config = global.config;
+const config = global.config;
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -46,6 +45,14 @@ if (config.get('Serial.enabled')) {
   global.serial = require('./app/serial');
 } else {
   global.serial = require('./app/mock');
+}
+
+/**
+ * MongoDB serial data logger
+ */
+
+if (config.get('Logger.enabled')) {
+  global.logger = require('./app/logger');
 }
 
 /**
