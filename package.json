@@ -9,7 +9,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prepush": "npm test"
   },
   "private": true,
   "dependencies": {
@@ -53,6 +54,7 @@
     "@types/node": "^6.0.78",
     "@types/socket.io-client": "^1.4.29",
     "codelyzer": "~2.0.0",
+    "husky": "^0.13.4",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
     "karma": "~1.4.1",
