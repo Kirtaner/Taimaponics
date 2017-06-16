@@ -4,7 +4,9 @@ const Log = require('./models/log');
 const io = global.io;
 const serial = global.serial;
 
-function writeLog(time, data) {
+const logger = {};
+
+logger.writeLog = function(time, data) {
   let logEntry = new Log();
 
   logEntry.time = time;
@@ -18,15 +20,21 @@ function writeLog(time, data) {
   });
 }
 
-module.exports = {
-  logSensors: function() {
-    let currentData = serial.sensors;
-    let currentTime = moment();
-    
-    writeLog(currentTime, currentData);
-    return;
-  },
-  getLogs: function() {
-    return;
-  }
+logger.logSensors = function() {
+  let currentData = serial.sensors;
+  let currentTime = moment();
+  
+  logger.writeLog(currentTime, currentData);
+  return;
 }
+
+logger.getLogs = function() {
+  return;
+}
+
+// TODO: Make this configurable and cleaner.
+setInterval( function() {
+  logger.logSensors();
+}, 1000*60*5);
+
+module.exports = logger;
