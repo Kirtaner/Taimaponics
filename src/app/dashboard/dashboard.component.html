@@ -3,10 +3,38 @@
   <h2>Dashboard</h2>
 
   <h4>Environment</h4>
+
   <div class="row" id="gauges">
-    <div class="col">{{ airTemperature }}&#8451;</div>
-    <div class="col">{{ humidity }}%</div>
-    <div class="col">{{ waterTemperature }}&#8451;</div>
+    <div class="col">
+      <div class="card text-center">
+        <div class="card-header">
+          Air Temperature
+        </div>
+        <div class="card-block">
+          <h4 class="card-title">{{ airTemperature }}&#8451;</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-center">
+        <div class="card-header">
+          Water Temperature
+        </div>
+        <div class="card-block">
+          <h4 class="card-title">{{ waterTemperature }}&#8451;</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card text-center">
+        <div class="card-header">
+          Relative Humidity
+        </div>
+        <div class="card-block">
+          <h4 class="card-title">{{ humidity }}%</h4>
+        </div>
+      </div>
+    </div>
   </div>
 
   <h4>Power</h4>
