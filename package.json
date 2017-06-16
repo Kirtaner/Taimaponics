@@ -8,10 +8,10 @@
     "start": "node app.js",
     "build": "ng build",
     "test": "ng test",
-    "push-test": "ng test --single-run",
+    "husky": "ng test --single-run",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prepush": "npm push-test"
+    "prepush": "npm husky"
   },
   "private": true,
   "dependencies": {
