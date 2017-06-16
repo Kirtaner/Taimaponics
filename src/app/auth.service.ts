@@ -20,18 +20,19 @@ export class AuthService {
   }
 
   registerUser(user: User): Observable<boolean> {
-    let body = JSON.stringify(user);
-    let headers = new Headers();
+    const body = JSON.stringify(user);
+    const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let options = new RequestOptions({ headers: headers });
+    const options = new RequestOptions({ headers: headers });
+
     return this.http.post(`${this.base_url}/register`, body, options).map( (res) => this.setToken(res) );
   }
 
   loginUser(user): Observable<Object> {
-    let body = JSON.stringify(user);
-    let headers = new Headers();
+    const body = JSON.stringify(user);
+    const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let options = new RequestOptions({ headers: headers });
+    const options = new RequestOptions({ headers: headers });
 
     return this.http.post(`${this.base_url}/login`, body, options).map( (res) => this.setToken(res) );
   }
@@ -42,15 +43,16 @@ export class AuthService {
   }
 
   verify(): Observable<Object> {
-    let currUser = JSON.parse(localStorage.getItem('currentUser'));
-    let token = ( currUser && 'token' in currUser) ? currUser.token : this.token;
-    let headers = new Headers({ 'x-access-token': token });
-    let options = new RequestOptions({ headers: headers });
+    const currUser = JSON.parse(localStorage.getItem('currentUser'));
+    const token = ( currUser && 'token' in currUser) ? currUser.token : this.token;
+    const headers = new Headers({ 'x-access-token': token });
+    const options = new RequestOptions({ headers: headers });
+
     return this.http.get(`${this.base_url}/check-state`, options).map( res => this.parseRes(res) );
   }
 
-  setToken(res){
-    let body = JSON.parse(res['_body']);
+  setToken(res) {
+    const body = JSON.parse(res['_body']);
     if ( body['success'] === true ) {
       this.token = body['token'];
       localStorage.setItem('currentUser', JSON.stringify({
@@ -58,11 +60,13 @@ export class AuthService {
         token: this.token
       }));
     }
+
     return body;
   }
 
-  parseRes(res){
-    let body = JSON.parse(res['_body']);
+  parseRes(res) {
+    const body = JSON.parse(res['_body']);
+
     return body;
   }
 }
