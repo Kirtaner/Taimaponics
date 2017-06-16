@@ -4,7 +4,6 @@ const router = express.Router();
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const auth = require('../middleware/auth');
-const secret = process.env.SECRET;
 
 router.get('/check-state', auth.verifyToken, (req, res) => {
 
@@ -37,9 +36,9 @@ router.post('/register', (req, res) => {
         newUser.password = newUser.generateHash(reqUser.password);
         newUser.save( (err) => {
             if( err )
-                throw err;
+              throw err;
 
-            let token = jwt.sign(newUser, secret, {
+            let token = jwt.sign(newUser, process.env.SECRET, {
               expiresIn : 60*60*24
             });
             let content = {
@@ -82,10 +81,11 @@ router.post('/login', (req, res) => {
       res.send(content);
       return;
     }
-
-    let token = jwt.sign(user, secret, {
+  
+    let token = jwt.sign(user, process.env.SECRET, {
       expiresIn : 60*60*24
     });
+
     let content = {
       user: user,
       success: true,

@@ -54,7 +54,7 @@ export class AuthService {
     if ( body['success'] === true ) {
       this.token = body['token'];
       localStorage.setItem('currentUser', JSON.stringify({
-        email: body['user']['name'],
+        name: body['user']['name'],
         token: this.token
       }));
     }
