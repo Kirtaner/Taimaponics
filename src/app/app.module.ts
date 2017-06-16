@@ -19,6 +19,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
+// Visualization Components
+import { LineChartComponent } from './charts/linechart/linechart.component';
+
 // Services
 import { AuthService } from './auth.service';
 
@@ -39,7 +42,8 @@ const appRoutes: Routes = [
     NavComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
