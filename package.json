@@ -8,9 +8,10 @@
     "start": "node app.js",
     "build": "ng build",
     "test": "ng test",
+    "push-test": "ng test --single-run",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prepush": "npm test"
+    "prepush": "npm push-test"
   },
   "private": true,
   "dependencies": {
