@@ -11,7 +11,7 @@
     "husky": "ng test --single-run",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prepush": "npm husky"
+    "prepush": "npm run husky"
   },
   "private": true,
   "dependencies": {
