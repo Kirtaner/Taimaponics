@@ -1,6 +1,6 @@
 {
-  "name": "Taimaponics",
-  "version": "0.1.0",
+  "name": "taimaponics",
+  "version": "0.1.0-alpha",
   "license": "MPL-2.0",
   "scripts": {
     "ng": "ng",

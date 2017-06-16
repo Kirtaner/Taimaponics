@@ -14,7 +14,7 @@ import { AuthService } from '../auth.service';
 })
 export class RegisterComponent {
   user: User;
-  message: string = '';
+  message: '';
 
   constructor(private authService: AuthService, private router: Router ) {
     this.user = new User;
@@ -22,12 +22,12 @@ export class RegisterComponent {
 
   registerUser(user) {
     this.authService.registerUser(user).subscribe( (res) => {
-      if( res['success'] == true ) {
+      if ( res['success'] === true ) {
         this.authService.setUser(res['user']);
         this.router.navigate(['']);
       } else {
         this.message = res['message'];
       }
-    })
+    });
   }
 }
