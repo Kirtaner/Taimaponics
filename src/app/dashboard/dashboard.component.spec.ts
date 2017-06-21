@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { ToggleButtonModule, InputSwitchModule } from 'primeng/primeng';
 
@@ -11,7 +12,7 @@ describe('DashboardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DashboardComponent ],
-      imports: [ ToggleButtonModule, InputSwitchModule ]
+      imports: [ ToggleButtonModule, InputSwitchModule, FormsModule ]
     })
     .compileComponents();
   }));
