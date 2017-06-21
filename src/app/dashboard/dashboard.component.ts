@@ -1,7 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { ToggleButtonModule } from 'primeng/primeng';
-
 import { SerialService } from '../common/serial.service';
 
 @Component({
@@ -18,6 +16,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   humidity;
   waterTemperature;
   relayStatus;
+
+  checked: boolean;
 
   constructor(private serialService: SerialService) { }
 

@@ -44,7 +44,7 @@ import { AuthService } from './auth.service';
     AppRoutesModule,
     DashboardModule
   ],
-  providers: [AuthService],
-  bootstrap: [AppComponent]
+  providers: [ AuthService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
