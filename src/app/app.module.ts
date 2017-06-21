@@ -14,25 +14,17 @@ import { HeaderComponent } from './header/header.component';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 
-// Pages
-import { DashboardComponent } from './dashboard/dashboard.component';
+// App modules and simple components
+import { AppRoutesModule } from './app-routes.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 // Visualization Components
-import { LineChartComponent } from './charts/linechart/linechart.component';
+// import { LineChartComponent } from './charts/line-chart/line-chart.component';
 
 // Services
 import { AuthService } from './auth.service';
-
-// Routing
-const appRoutes: Routes = [
-  { path: '', component: DashboardComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  // { path: '',   redirectTo: '/', pathMatch: 'full' },
-  // { path: '**', component:  }
-];
 
 @NgModule({
   declarations: [
@@ -40,17 +32,17 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     NavComponent,
-    DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    LineChartComponent
+    // LineChartComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    AppRoutesModule,
+    DashboardModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

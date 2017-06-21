@@ -1,4 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+
+import { ToggleButtonModule } from 'primeng/primeng';
+
 import { SerialService } from '../common/serial.service';
 
 @Component({
