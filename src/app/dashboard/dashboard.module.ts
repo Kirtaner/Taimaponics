@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { Routes, RouterModule } from '@angular/router';
 
 import { ToggleButtonModule, InputSwitchModule } from 'primeng/primeng';
@@ -18,7 +19,8 @@ import { DashboardComponent } from './dashboard.component';
     CommonModule,
     ToggleButtonModule,
     InputSwitchModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     DashboardComponent

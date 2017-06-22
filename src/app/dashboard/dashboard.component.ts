@@ -24,11 +24,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.connection = this.serialService.getSensors().subscribe(message => {
       this.sensors = message;
-      this.airTemperature = this.sensors[0];
-      this.humidity = this.sensors[1];
-      this.waterTemperature = this.sensors[2];
-      this.relayStatus = this.sensors[3];
+      this.airTemperature = this.sensors.roomTemperature;
+      this.humidity = this.sensors.relativeHumidity;
+      this.waterTemperature = this.sensors.waterTemperature;
+      this.relayStatus = this.sensors.relays;
     });
+
+    this.checked = true;
   }
 
   ngOnDestroy() {
