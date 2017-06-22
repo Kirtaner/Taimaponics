@@ -1,6 +1,6 @@
 var global = require('./global');
 var config = global.config;
-var sensors;
+var sensors = {};
 var relayStatus = "00000000";
 
 function randomInt (low, high) {
@@ -12,11 +12,25 @@ function setRelayStatus(relay, mode) {
     relayStatus = relayStatus.substr(0,relay) + mode + relayStatus.substr(relay+1);
 }
 
+function updateSensors()
+{
+  let string = mockSerial.getRoomTemperature() + " " + mockSerial.getHumidity() + " " + mockSerial.getWaterTemperature() + " " + mockSerial.getRelayStatus();
+  let sensorArray = string.split(" ");
+  let relayArray = Array.from(sensorArray[3].toString()).map(Number);
+
+  sensors.roomTemperature = sensorArray[0];
+  sensors.relativeHumidity = sensorArray[1];
+  sensors.waterTemperature = sensorArray[2];
+  sensors.relays = relayArray;
+
+  module.exports.sensors = sensors;
+}
+
 /**
  * Mock serial connection.
  */
 
-module.exports = {
+mockSerial =  {
   getRoomTemperature: function () {
     return randomInt(10,30);
   },
@@ -34,7 +48,7 @@ module.exports = {
   },
 
   serialCommand: function(command){
-    var commandIntent = command.charAt(0);
+    let commandIntent = command.charAt(0);
 
     if(commandIntent == 'o') {
       setRelayStatus(1, command.charAt(1));
@@ -59,12 +73,7 @@ module.exports = {
   },
 }
 
-function updateSensors()
-{
-  var string = module.exports.getRoomTemperature() + " " + module.exports.getHumidity() + " " + module.exports.getWaterTemperature() + " " + 11100111;
-  var sensorArray = string.split(" ");
-  sensors = sensorArray;
-  module.exports.sensors = sensors;
-}
+module.exports = mockSerial;
 
+// Update the sensors!
 setInterval(updateSensors, 2000);
