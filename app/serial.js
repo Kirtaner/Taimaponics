@@ -52,29 +52,33 @@ function updateSensors(data)
 
 serial = {
   getRoomTemperature: function() {
-
+    return sensors.roomTemperature;
   },
 
   getHumidity: function() {
+    return sensors.relativeHumidity;
+  },
 
+  getWaterTemperature: function() {
+    return sensors.waterTemperature;
   },
 
   getWaterLevel: function() {
-
+    return;
   },
 
   activateRelay: function(relay) {
-    var command = 'o'+relay;
+    let command = 'o'+relay;
     port.write(command);
   },
 
   deactivateRelay: function(relay) {
-    var command = 'c'+relay;
+    let command = 'c'+relay;
     port.write(command);
   },
 
   getRelayStatus: function() {
-
+    return sensors.relays;
   },
 }
 
