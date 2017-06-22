@@ -2,7 +2,7 @@ var global = require('./global');
 var config = global.config;
 var SerialPort = require("serialport");
 var crypto = require('crypto');
-var sensors;
+var sensors = {};
 
 /**
  * Arduino serial connection.
@@ -39,21 +39,18 @@ port.on("open", function () {
 
 function updateSensors(data)
 {
-  var sensorArray = data.split(" ");
-  sensors = sensorArray;
+  let sensorArray = data.split(" ");
+  let relayArray = Array.from(sensorArray[3].toString()).map(Number);
+
+  sensors.roomTemperature = sensorArray[0];
+  sensors.relativeHumidity = sensorArray[1];
+  sensors.waterTemperature = sensorArray[2];
+  sensors.relays = relayArray;
+
   module.exports.sensors = sensors;
 }
 
-function serialChecksum(data)
-{
-
-}
-
-module.exports = {
-  getRoomTemperature: function () {
-    console.log('lel');
-  },
-
+serial = {
   getRoomTemperature: function() {
 
   },
@@ -81,4 +78,5 @@ module.exports = {
   },
 }
 
+module.exports = serial;
 module.exports.port = port;

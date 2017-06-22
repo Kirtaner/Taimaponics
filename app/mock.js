@@ -3,6 +3,8 @@ var config = global.config;
 var sensors = {};
 var relayStatus = "00000000";
 
+console.log('Mock serial connection active');
+
 function randomInt (low, high) {
   return Math.floor(Math.random() * (high - low) + low);
 }
