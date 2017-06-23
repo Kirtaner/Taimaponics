@@ -2,7 +2,8 @@ var global = require('./global');
 var config = global.config;
 var SerialPort = require("serialport");
 var crypto = require('crypto');
-var sensors = {};
+
+var sensors = new Object;
 
 /**
  * Arduino serial connection.

@@ -17,8 +17,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   waterTemperature;
   relayStatus;
 
-  checked: boolean;
-
   constructor(private serialService: SerialService) { }
 
   ngOnInit() {
@@ -29,8 +27,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.waterTemperature = this.sensors.waterTemperature;
       this.relayStatus = this.sensors.relays;
     });
+  }
 
-    this.checked = true;
+  toggleRelay(event, relay) {
+    if (event.checked) {
+      this.serialService.relayOn(relay);
+    } else {
+      this.serialService.relayOff(relay);
+    }
+
+    this.relayStatus[relay] = event.checked;
   }
 
   ngOnDestroy() {
