@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Subject } from 'rxjs/Subject';
+import { Observer } from 'rxjs/Observer';
 import { Observable } from 'rxjs/Observable';
 
 import * as io from 'socket.io-client';
@@ -8,7 +9,7 @@ import * as io from 'socket.io-client';
 @Injectable()
 export class SerialService {
   // TODO: Tie this into project configuration
-  private url = 'http://localhost:3000';
+  private url = 'ws://localhost:3000';
   private socket;
 
   constructor() { }
@@ -23,6 +24,7 @@ export class SerialService {
 
   getSensors() {
     const observable = new Observable(observer => {
+      // this.socket = new WebSocket(this.url);
       this.socket = io(this.url);
       this.socket.on('sensors', (data) => {
         console.log(data);
