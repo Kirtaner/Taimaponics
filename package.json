@@ -57,6 +57,7 @@
     "@types/node": "^6.0.78",
     "@types/socket.io-client": "^1.4.29",
     "codelyzer": "~2.0.0",
+    "fsevents": "^1.1.2",
     "husky": "^0.13.4",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
