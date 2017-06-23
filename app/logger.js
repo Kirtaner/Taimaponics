@@ -23,7 +23,7 @@ logger.writeLog = function(time, data) {
 logger.logSensors = function() {
   let currentData = serial.sensors;
   let currentTime = moment();
-  
+
   logger.writeLog(currentTime, currentData);
   return;
 }
