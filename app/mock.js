@@ -10,8 +10,11 @@ function randomInt (low, high) {
 }
 
 // modifies relay activation state list
-function setRelayStatus(relay, mode) {
-    relayStatus = relayStatus.substr(0,relay) + mode + relayStatus.substr(relay+1);
+function setRelayStatus(mode, relay) {
+  console.log('setRelayStatus - Relay: ' + relay);
+  console.log('setRelayStatus - Mode: ' + mode);
+
+  relayStatus = relayStatus.substr(0,relay) + mode + relayStatus.substr(relay+1);
 }
 
 function updateSensors()
@@ -50,6 +53,7 @@ mockSerial =  {
   },
 
   serialCommand: function(command){
+    console.log('serialCommand: '+ command);
     let commandIntent = command.charAt(0);
 
     if(commandIntent == 'o') {
@@ -58,15 +62,16 @@ mockSerial =  {
     if (commandIntent == 'c') {
       setRelayStatus(0, command.charAt(1));
     }
+    console.log("relayStatus: " + relayStatus);
   },
 
   activateRelay: function(relay) {
-    serialCommand('o'+relay);
+    this.serialCommand('o'+relay);
     return relayStatus;
   },
 
   deactivateRelay: function(relay) {
-    serialCommand('c'+relay);
+    this.serialCommand('c'+relay);
     return relayStatus;
   },
 
@@ -77,5 +82,6 @@ mockSerial =  {
 
 module.exports = mockSerial;
 
-// Update the sensors!
+// Update the mock sensors!
+updateSensors();
 setInterval(updateSensors, 2000);
