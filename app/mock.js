@@ -1,16 +1,24 @@
-var global = require('./global');
+const global = require('./global');
 var config = global.config;
-var sensors = {};
+
 var relayStatus = "00000000";
+var sensors = {
+  roomTemperature: 0,
+  relativeHumidity: 0,
+  waterTemperature: 0,
+  relays: Array.from(relayStatus.toString()).map(Number)
+};
 
 console.log('Mock serial connection active');
 
-function randomInt (low, high) {
+function randomInt(low, high)
+{
   return Math.floor(Math.random() * (high - low) + low);
 }
 
 // modifies relay activation state list
-function setRelayStatus(mode, relay) {
+function setRelayStatus(mode, relay)
+{
   console.log('setRelayStatus - Relay: ' + relay);
   console.log('setRelayStatus - Mode: ' + mode);
 
@@ -36,23 +44,23 @@ function updateSensors()
  */
 
 mockSerial =  {
-  getRoomTemperature: function () {
+  getRoomTemperature() {
     return randomInt(10,30);
   },
 
-  getWaterTemperature: function() {
+  getWaterTemperature() {
     return randomInt(10,30);
   },
 
-  getHumidity: function() {
+  getHumidity() {
     return randomInt(10,90);
   },
 
-  getWaterLevel: function() {
+  getWaterLevel() {
     return randomInt(4,9);
   },
 
-  serialCommand: function(command){
+  serialCommand(command) {
     console.log('serialCommand: '+ command);
     let commandIntent = command.charAt(0);
 
@@ -65,17 +73,17 @@ mockSerial =  {
     console.log("relayStatus: " + relayStatus);
   },
 
-  activateRelay: function(relay) {
+  activateRelay(relay) {
     this.serialCommand('o'+relay);
     return relayStatus;
   },
 
-  deactivateRelay: function(relay) {
+  deactivateRelay(relay) {
     this.serialCommand('c'+relay);
     return relayStatus;
   },
 
-  getRelayStatus: function() {
+  getRelayStatus() {
     return relayStatus;
   },
 }

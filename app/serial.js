@@ -3,17 +3,29 @@ var config = global.config;
 var SerialPort = require("serialport");
 var crypto = require('crypto');
 
-var sensors = new Object;
+// var relayStatus = "00000000";
+var sensors = {
+  roomTemperature: 0,
+  relativeHumidity: 0,
+  waterTemperature: 0,
+  relays: Array.from("00000000").map(Number)
+};
 
 /**
  * Arduino serial connection.
  */
+SerialPort.list(function(err, list) {
+  console.log(list);
+});
+
 port = new SerialPort(config.get('Serial.port'), {
   baudrate: config.get('Serial.baudrate'),
   flowControl: config.get('Serial.flowControl'),
   dataBits: config.get('Serial.dataBits'),
   stopBits: config.get('Serial.stopBits'),
   parity: config.get('Serial.parity'),
+}, function(err) {
+  console.log(err);
 });
 
 port.on("open", function () {
@@ -52,36 +64,37 @@ function updateSensors(data)
 }
 
 serial = {
-  getRoomTemperature: function() {
+  getRoomTemperature() {
     return sensors.roomTemperature;
   },
 
-  getHumidity: function() {
+  getHumidity() {
     return sensors.relativeHumidity;
   },
 
-  getWaterTemperature: function() {
+  getWaterTemperature() {
     return sensors.waterTemperature;
   },
 
-  getWaterLevel: function() {
+  getWaterLevel() {
     return;
   },
 
-  activateRelay: function(relay) {
+  activateRelay(relay) {
     let command = 'o'+relay;
     port.write(command);
   },
 
-  deactivateRelay: function(relay) {
+  deactivateRelay(relay) {
     let command = 'c'+relay;
     port.write(command);
   },
 
-  getRelayStatus: function() {
+  getRelayStatus() {
     return sensors.relays;
   },
 }
 
 module.exports = serial;
+module.exports.sensors = sensors;
 module.exports.port = port;
