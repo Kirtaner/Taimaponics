@@ -1,11 +1,14 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { DOCUMENT } from '@angular/platform-browser';
 
 import { SerialService } from './serial.service';
 
 describe('SerialService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SerialService]
+      providers: [
+        SerialService
+      ]
     });
   });
 

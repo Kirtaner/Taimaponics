@@ -7,8 +7,7 @@ import { SerialService } from '../common/serial.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   providers: [
-    SerialService,
-    { provide: 'Window',  useValue: window }
+    SerialService
   ]
 })
 export class DashboardComponent implements OnInit, OnDestroy {

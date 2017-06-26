@@ -7,7 +7,9 @@ import { Subscription } from 'rxjs/Subscription';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [AuthService]
+  providers: [
+    AuthService
+  ]
 })
 
 export class AppComponent implements OnInit, OnDestroy {
@@ -27,7 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
 
     // example of verification
-    this.authService.verify().subscribe( (res) => this.message = res['message']);
+    this.authService.verify().subscribe( (res) => this.message = res['message'] );
   }
 
   ngOnDestroy() {

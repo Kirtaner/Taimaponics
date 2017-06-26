@@ -1,4 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 import { Subject } from 'rxjs/Subject';
 import { Observer } from 'rxjs/Observer';
@@ -12,8 +13,8 @@ export class SerialService {
   private url;
   private socket;
 
-  constructor(@Inject('Window') window: Window) {
-    const hostname = window.location.hostname;
+  constructor(@Inject(DOCUMENT) private document) {
+    const hostname = document.location.hostname;
     this.url = 'ws://' + hostname + ':3000';
   }
 

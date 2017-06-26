@@ -59,8 +59,7 @@ export function configFactory(http: Http): ConfigLoader {
     DashboardModule
   ],
   providers: [
-    AuthService,
-    { provide: Window, useValue: window }
+    AuthService
   ],
   bootstrap: [ AppComponent ]
 })

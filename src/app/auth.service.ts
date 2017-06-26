@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { DOCUMENT } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import { User } from './users/user';
 import { Subject } from 'rxjs/Subject';
@@ -7,13 +8,15 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
-
-  private base_url = 'http://127.0.0.1:3000/api/user';
+  private baseUrl;
   token: string;
   private userSource = new Subject<User>();
   user$ = this.userSource.asObservable();
 
-  constructor(public http: Http) { }
+  constructor(public http: Http, @Inject(DOCUMENT) private document) {
+    const hostname = document.location.hostname;
+    this.baseUrl = 'http://' + hostname + ':3000/api/user';
+  }
 
   setUser(user: User) {
     this.userSource.next(user);
@@ -25,7 +28,7 @@ export class AuthService {
     headers.append('Content-Type', 'application/json');
     const options = new RequestOptions({ headers: headers });
 
-    return this.http.post(`${this.base_url}/register`, body, options).map( (res) => this.setToken(res) );
+    return this.http.post(`${this.baseUrl}/register`, body, options).map( (res) => this.setToken(res) );
   }
 
   loginUser(user): Observable<Object> {
@@ -34,7 +37,7 @@ export class AuthService {
     headers.append('Content-Type', 'application/json');
     const options = new RequestOptions({ headers: headers });
 
-    return this.http.post(`${this.base_url}/login`, body, options).map( (res) => this.setToken(res) );
+    return this.http.post(`${this.baseUrl}/login`, body, options).map( (res) => this.setToken(res) );
   }
 
   logout() {
@@ -48,7 +51,7 @@ export class AuthService {
     const headers = new Headers({ 'x-access-token': token });
     const options = new RequestOptions({ headers: headers });
 
-    return this.http.get(`${this.base_url}/check-state`, options).map( res => this.parseRes(res) );
+    return this.http.get(`${this.baseUrl}/check-state`, options).map( res => this.parseRes(res) );
   }
 
   setToken(res) {
