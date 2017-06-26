@@ -19,7 +19,7 @@ import { FooterComponent } from './footer/footer.component';
 // App modules and simple components
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { SettingsComponent } from './settings/settings.component';
+import { SettingsModule } from './settings/settings.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -42,7 +42,6 @@ export function configFactory(http: Http): ConfigLoader {
     NavComponent,
     LoginComponent,
     RegisterComponent,
-    SettingsComponent,
     // LineChartComponent
   ],
   imports: [
@@ -56,7 +55,8 @@ export function configFactory(http: Http): ConfigLoader {
       deps: [Http]
     }),
     AppRoutingModule,
-    DashboardModule
+    DashboardModule,
+    SettingsModule
   ],
   providers: [
     AuthService

@@ -1,13 +1,13 @@
 <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault">
+  <button button class="navbar-toggler hidden-sm-up" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed">
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand" href="#">Taimaponics</a>
 
-  <div class="collapse navbar-collapse" id="navbar">
+  <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-toggleable-xs" id="navigation">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/" routerLinkActive="active">Dashboard</a>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/settings" routerLinkActive="active">Settings</a>
