@@ -14,9 +14,6 @@ var sensors = {
 /**
  * Arduino serial connection.
  */
-SerialPort.list(function(err, list) {
-  console.log(list);
-});
 
 port = new SerialPort(config.get('Serial.port'), {
   baudrate: config.get('Serial.baudrate'),
@@ -93,6 +90,12 @@ serial = {
   getRelayStatus() {
     return sensors.relays;
   },
+
+  getDeviceList() {
+    SerialPort.list(function(err, list) {
+      return list;
+    });
+  }
 }
 
 module.exports = serial;
