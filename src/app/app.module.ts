@@ -15,7 +15,7 @@ import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 
 // App modules and simple components
-import { AppRoutesModule } from './app-routes.module';
+import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
