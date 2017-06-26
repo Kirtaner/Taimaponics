@@ -26,6 +26,8 @@
     "@angular/platform-server": "^4.2.2",
     "@angular/router": "^4.2.2",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.26",
+    "@ngx-config/core": "^0.2.0-rc.5",
+    "@ngx-config/http-loader": "^0.2.0-rc.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
     "bootstrap": "^4.0.0-alpha.6",

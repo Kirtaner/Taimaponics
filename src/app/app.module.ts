@@ -1,12 +1,15 @@
 // Angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { Http } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
 // Dependencies
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfigModule, ConfigLoader } from '@ngx-config/core';
+import { ConfigHttpLoader } from '@ngx-config/http-loader';
 
 // Skeleton
 import { AppComponent } from './app.component';
@@ -25,6 +28,12 @@ import { RegisterComponent } from './register/register.component';
 
 // Services
 import { AuthService } from './auth.service';
+import { SettingsComponent } from './settings/settings.component';
+
+// System config loader
+export function configFactory(http: Http): ConfigLoader {
+  return new ConfigHttpLoader(http, './config.json');
+};
 
 @NgModule({
   declarations: [
@@ -34,6 +43,7 @@ import { AuthService } from './auth.service';
     NavComponent,
     LoginComponent,
     RegisterComponent,
+    SettingsComponent,
     // LineChartComponent
   ],
   imports: [
@@ -41,7 +51,12 @@ import { AuthService } from './auth.service';
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
-    AppRoutesModule,
+    ConfigModule.forRoot({
+      provide: ConfigLoader,
+      useFactory: (configFactory),
+      deps: [Http]
+    }),
+    AppRoutingModule,
     DashboardModule
   ],
   providers: [ AuthService ],

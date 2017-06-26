@@ -90,6 +90,11 @@ app.use(function (req, res, next) {
     next();
 });
 
+// App config
+app.get('/config.json', (req, res) => {
+  res.sendFile(path.join(__dirname, 'config/development.json'));
+});
+
 // Point static path to dist for angular 2
 app.use(express.static(path.join(__dirname, 'dist')));
 

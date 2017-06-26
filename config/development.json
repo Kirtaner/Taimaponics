@@ -1,10 +1,8 @@
 {
-    // Server settings
     "Server": {
         "port": 3000
     },
 
-    // Serial port settings
     "Serial": {
         "enabled": 0,
         "port": "/dev/tty.usbserial-A600agc8",
@@ -15,12 +13,10 @@
         "parity": "none"
     },
 
-    // Data logger settings
     "Logger": {
         "enabled": 1
     },
 
-    // Camera settings
     "Camera": {
         "enabled": 0
     }
