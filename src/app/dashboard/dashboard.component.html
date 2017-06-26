@@ -40,9 +40,35 @@
   <h4>Power</h4>
   <div class="row" id="power">
     <!--<li *ng-for="#n of names"><input type="text" [(ng-model)]="n.name">{{n.name}}</li>-->
-    <div class="col" *ngFor="let relay of relayStatus; let idx = index">
-      <p-inputSwitch (onChange)="toggleRelay($event, [idx])" [(ngModel)]="relay[idx]" name="relay{{idx}}"></p-inputSwitch>
+    <!--<div class="col" *ngFor="let relay of relayStatus; let idx = index">-->
+      <!--<p-inputSwitch (onChange)="toggleRelay($event, [idx])" [(ngModel)]="relayStatus[idx]" name="relay{{idx}}"></p-inputSwitch>-->
+    <!--</div>-->
+
+    <div class="col">
+      <p-inputSwitch (onChange)="toggleRelay($event, 0)" [(ngModel)]="relayStatus && relayStatus[0]" name="relay0"></p-inputSwitch>
     </div>
+    <div class="col">
+      <p-inputSwitch (onChange)="toggleRelay($event, 1)" [(ngModel)]="relayStatus && relayStatus[1]" name="relay1"></p-inputSwitch>
+    </div>
+    <div class="col">
+      <p-inputSwitch (onChange)="toggleRelay($event, 2)" [(ngModel)]="relayStatus && relayStatus[2]" name="relay2"></p-inputSwitch>
+    </div>
+    <div class="col">
+      <p-inputSwitch (onChange)="toggleRelay($event, 3)" [(ngModel)]="relayStatus && relayStatus[3]" name="relay3"></p-inputSwitch>
+    </div>
+    <div class="col">
+      <p-inputSwitch (onChange)="toggleRelay($event, 4)" [(ngModel)]="relayStatus && relayStatus[4]" name="relay4"></p-inputSwitch>
+    </div>
+    <div class="col">
+      <p-inputSwitch (onChange)="toggleRelay($event, 5)" [(ngModel)]="relayStatus && relayStatus[5]" name="relay5"></p-inputSwitch>
+    </div>
+    <div class="col">
+      <p-inputSwitch (onChange)="toggleRelay($event, 6)" [(ngModel)]="relayStatus && relayStatus[6]" name="relay6"></p-inputSwitch>
+    </div>
+    <div class="col">
+      <p-inputSwitch (onChange)="toggleRelay($event, 7)" [(ngModel)]="relayStatus && relayStatus[7]" name="relay7"></p-inputSwitch>
+    </div>
+
   </div>
 
 </div>

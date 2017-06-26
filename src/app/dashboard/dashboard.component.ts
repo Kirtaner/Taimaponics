@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   airTemperature;
   humidity;
   waterTemperature;
-  relayStatus;
+  relayStatus: [ false, false, false, false, false, false, false, false ];
 
   constructor(private serialService: SerialService) { }
 
