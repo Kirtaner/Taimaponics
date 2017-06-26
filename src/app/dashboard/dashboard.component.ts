@@ -6,7 +6,10 @@ import { SerialService } from '../common/serial.service';
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [ SerialService ]
+  providers: [
+    SerialService,
+    { provide: 'Window',  useValue: window }
+  ]
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   connection;

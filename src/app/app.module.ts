@@ -1,9 +1,8 @@
 // Angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpModule, Http } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
 // Dependencies
@@ -20,6 +19,7 @@ import { FooterComponent } from './footer/footer.component';
 // App modules and simple components
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -28,7 +28,6 @@ import { RegisterComponent } from './register/register.component';
 
 // Services
 import { AuthService } from './auth.service';
-import { SettingsComponent } from './settings/settings.component';
 
 // System config loader
 export function configFactory(http: Http): ConfigLoader {
@@ -59,7 +58,10 @@ export function configFactory(http: Http): ConfigLoader {
     AppRoutingModule,
     DashboardModule
   ],
-  providers: [ AuthService ],
+  providers: [
+    AuthService,
+    { provide: Window, useValue: window }
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

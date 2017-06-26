@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 
 import { Subject } from 'rxjs/Subject';
 import { Observer } from 'rxjs/Observer';
@@ -9,10 +9,13 @@ import * as io from 'socket.io-client';
 @Injectable()
 export class SerialService {
   // TODO: Tie this into project configuration
-  private url = 'ws://localhost:3000';
+  private url;
   private socket;
 
-  constructor() { }
+  constructor(@Inject('Window') window: Window) {
+    const hostname = window.location.hostname;
+    this.url = 'ws://' + hostname + ':3000';
+  }
 
   relayOn(relay) {
     this.socket.emit('relayOn', relay);
