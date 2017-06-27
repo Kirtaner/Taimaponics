@@ -5,3 +5,21 @@
 #gauges {
   padding-bottom: 1em;
 }
+
+#power span.badge {
+  font-size: 1.1em;
+}
+
+.border-between > [class*='col']:before {
+   background: #222;
+   bottom: 0;
+   content: " ";
+   left: 0;
+   position: absolute;
+   width: 1px;
+   top: 0;
+}
+
+.border-between > [class*='col']:first-child:before {
+   display: none;
+}

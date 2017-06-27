@@ -45,29 +45,37 @@
           Power Outlets
         </div>
         <div class="card-block">
-          <div class="row">
+          <div class="row border-between">
             <div class="col">
+              <span class="badge badge-success">Lights</span>
               <p-inputSwitch (onChange)="toggleRelay($event, 0)" [(ngModel)]="relayStatus && relayStatus[0]" name="relay0"></p-inputSwitch>
             </div>
             <div class="col">
+              <span class="badge badge-success">Main Pump</span>
               <p-inputSwitch (onChange)="toggleRelay($event, 1)" [(ngModel)]="relayStatus && relayStatus[1]" name="relay1"></p-inputSwitch>
             </div>
             <div class="col">
+              <span class="badge badge-success">Label</span>
               <p-inputSwitch (onChange)="toggleRelay($event, 2)" [(ngModel)]="relayStatus && relayStatus[2]" name="relay2"></p-inputSwitch>
             </div>
             <div class="col">
+              <span class="badge badge-success">Label</span>
               <p-inputSwitch (onChange)="toggleRelay($event, 3)" [(ngModel)]="relayStatus && relayStatus[3]" name="relay3"></p-inputSwitch>
             </div>
             <div class="col">
+              <span class="badge badge-success">Label</span>
               <p-inputSwitch (onChange)="toggleRelay($event, 4)" [(ngModel)]="relayStatus && relayStatus[4]" name="relay4"></p-inputSwitch>
             </div>
             <div class="col">
+              <span class="badge badge-success">Label</span>
               <p-inputSwitch (onChange)="toggleRelay($event, 5)" [(ngModel)]="relayStatus && relayStatus[5]" name="relay5"></p-inputSwitch>
             </div>
             <div class="col">
+              <span class="badge badge-success">Label</span>
               <p-inputSwitch (onChange)="toggleRelay($event, 6)" [(ngModel)]="relayStatus && relayStatus[6]" name="relay6"></p-inputSwitch>
             </div>
             <div class="col">
+              <span class="badge badge-success">Label</span>
               <p-inputSwitch (onChange)="toggleRelay($event, 7)" [(ngModel)]="relayStatus && relayStatus[7]" name="relay7"></p-inputSwitch>
             </div>
           </div>
