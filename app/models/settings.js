@@ -7,10 +7,10 @@ const settingsSchema = Schema({
     serial: {
       _id: false,
       port: String,
-      baudRate: Number,
-      dataBits: { type: Number, min: 5, max: 8 },
-      stopBits: { type: Number, min: 1, max: 2 },
-      parity: String
+      baudRate: { type: Number, default: '9600' },
+      dataBits: { type: Number, min: 5, max: 8, default: 8 },
+      stopBits: { type: Number, min: 1, max: 2, default: 1 },
+      parity: { type: String, default: 'none' }
     },
   },
   logging: {
