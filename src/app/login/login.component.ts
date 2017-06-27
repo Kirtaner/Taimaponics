@@ -24,7 +24,7 @@ export class LoginComponent {
       this.user_status = res['success'];
       if(res['success'] == true) {
         this.authService.setUser(res['user']);
-        this.router.navigate(['']);
+        this.router.navigate(['/dashboard']);
       } else {
         this.message = res['message'];
       }

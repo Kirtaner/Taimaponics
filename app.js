@@ -21,6 +21,7 @@ const expressjwt = require('express-jwt');
  * REST Controllers
  */
 const user = require('./app/controllers/user');
+const settings = require('./app/controllers/settings');
 
 /**
  * Global namespace for common modules
@@ -100,6 +101,9 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // Authentication
 app.use('/api/user', user);
+
+// Settings
+app.use('/api/settings', settings);
 
 // catchall non-api route for angular 2
 app.get('*', (req, res) => {
