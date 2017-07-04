@@ -1,5 +1,4 @@
 const moment = require('moment');
-const global = require('./global');
 const Log = require('./models/log');
 const io = global.io;
 const serial = global.serial;

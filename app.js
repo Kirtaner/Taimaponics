@@ -18,17 +18,17 @@ const expressjwt = require('express-jwt');
 // var MongoStore = require('connect-mongo')(session);
 
 /**
+ * Global namespace for common modules
+ */
+global.config = require('config');
+const config = global.config;
+
+/**
  * REST Controllers
  */
 const user = require('./app/controllers/user');
 const settings = require('./app/controllers/settings');
-
-/**
- * Global namespace for common modules
- */
-var global = require('./app/global');
-global.config = require('config');
-const config = global.config;
+global.settings = settings.load();
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.

@@ -1,4 +1,3 @@
-var global = require('./global');
 var config = global.config;
 var SerialPort = require("serialport");
 var crypto = require('crypto');

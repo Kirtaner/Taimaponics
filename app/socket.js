@@ -1,31 +1,39 @@
-var global = require('./global');
-var io = global.io;
-var serial = global.serial;
-var sockets = {};
+const io = global.io;
+const serial = global.serial;
+const settings = global.settings;
 
-function emitSensorData() {
-  io.emit('sensors', serial.sensors);
-}
+let clients = {};
 
-io.on('connection', function(socket) {
+socket = {
+  emitSensorData() {
+    io.emit('sensors', serial.sensors);
+  },
+  emitSettings() {
+    io.emit('settings', serial.settings);
+  }
+};
 
-  sockets[socket.id] = socket;
-  console.log("Total clients connected:", Object.keys(sockets).length);
+io.on('connection', function(client) {
 
-  emitSensorData();
+  clients[client.id] = client;
+  console.log("Total clients connected:", Object.keys(clients).length);
 
-  socket.on('disconnect', function() {
-    delete sockets[socket.id];
+  socket.emitSensorData();
+  socket.emitSettings();
+
+  client.on('disconnect', function() {
+    delete clients[client.id];
     console.log("Client disconnected");
   });
 
-  socket.on('relayOn', function(relay) {
+  client.on('relayOn', function(relay) {
     serial.activateRelay(relay);
   });
 
-  socket.on('relayOff', function(relay) {
+  client.on('relayOff', function(relay) {
     serial.deactivateRelay(relay);
   });
+
 });
 
-setInterval(emitSensorData, 2000);
+setInterval(socket.emitSensorData, 2000);

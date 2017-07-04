@@ -1,7 +1,6 @@
-const global = require('./global');
 var config = global.config;
 
-var sensors = {
+let sensors = {
   roomTemperature: 0,
   relativeHumidity: 0,
   waterTemperature: 0,
@@ -44,7 +43,7 @@ function updateSensors()
  * Mock serial connection.
  */
 
-mockSerial =  {
+mockSerial = {
   getRoomTemperature() {
     return randomInt(10,30);
   },
