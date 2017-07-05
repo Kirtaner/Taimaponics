@@ -18,24 +18,37 @@ const expressjwt = require('express-jwt');
 // var MongoStore = require('connect-mongo')(session);
 
 /**
- * Global namespace for common modules
- */
-global.config = require('config');
-const config = global.config;
-
-/**
- * REST Controllers
- */
-const user = require('./app/controllers/user');
-const settings = require('./app/controllers/settings');
-global.settings = settings.load();
-
-/**
- * Load environment variables from .env file, where API keys and passwords are configured.
+ * Load environment variables from .env file, and load configuration
  *
  * Default path: .env (You can remove the path argument entirely, after renaming `.env.example` to `.env`)
  */
 dotenv.load({ path: '.env.example' });
+global.config = require('config');
+const config = global.config;
+
+/**
+ * Controllers
+ */
+const user = require('./app/controllers/user');
+const settings = require('./app/controllers/settings');
+
+/**
+ * Connect to MongoDB and load settings
+ */
+mongoose.connect(process.env.MONGODB || process.env.MONGOLAB_URI);
+mongoose.connection.on('error', function() {
+  console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
+  process.exit(1);
+});
+
+mongoose.connection.on('connected', function (ref) {
+  console.log('Connected to MongoDB server.');
+
+  // load application settings from mongodb collection
+  settings.load(function(data) {
+    global.settings = data;
+  });
+});
 
 /**
  * If Arduino hardware is present and enabled, use a real serial port
@@ -55,15 +68,6 @@ if (config.get('Serial.enabled')) {
 if (config.get('Logger.enabled')) {
   global.logger = require('./app/logger');
 }
-
-/**
- * Connect to MongoDB.
- */
-mongoose.connect(process.env.MONGODB || process.env.MONGOLAB_URI);
-mongoose.connection.on('error', function() {
-  console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
-  process.exit(1);
-});
 
 /**
  * Create Express and SocketIO server.

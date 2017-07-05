@@ -28,10 +28,8 @@ export class SerialService {
 
   getSensors() {
     const observable = new Observable(observer => {
-      // this.socket = new WebSocket(this.url);
       this.socket = io(this.url);
       this.socket.on('sensors', (data) => {
-        console.log(data);
         observer.next(data);
       });
       return () => {

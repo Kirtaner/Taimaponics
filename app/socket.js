@@ -1,6 +1,5 @@
 const io = global.io;
 const serial = global.serial;
-const settings = global.settings;
 
 let clients = {};
 
@@ -9,7 +8,7 @@ socket = {
     io.emit('sensors', serial.sensors);
   },
   emitSettings() {
-    io.emit('settings', serial.settings);
+    io.emit('settings', global.settings);
   }
 };
 
