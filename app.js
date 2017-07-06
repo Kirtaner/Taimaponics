@@ -1,6 +1,9 @@
+const VERSION = '0.1.0';
+
 /**
  * Module dependencies.
  */
+const colors = require('colors');
 const path = require('path');
 const express = require('express');
 const compress = require('compression');
@@ -16,6 +19,8 @@ const expressjwt = require('express-jwt');
 // var errorHandler = require('errorhandler');
 // var lusca = require('lusca');
 // var MongoStore = require('connect-mongo')(session);
+
+console.log('*** Launching Taimaponics v%s ***'.green.bgBlack.bold, VERSION);
 
 /**
  * Load environment variables from .env file, and load configuration
@@ -37,16 +42,20 @@ const settings = require('./app/controllers/settings');
  */
 mongoose.connect(process.env.MONGODB || process.env.MONGOLAB_URI);
 mongoose.connection.on('error', function() {
-  console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
+  console.log('MongoDB Connection Error. Please make sure that MongoDB is running.'.red);
   process.exit(1);
 });
 
 mongoose.connection.on('connected', function (ref) {
-  console.log('Connected to MongoDB server.');
+  console.log('Connected to MongoDB server.'.green);
 
   // load application settings from mongodb collection
   settings.load(function(data) {
     global.settings = data;
+
+    if (global.settings.firstRun) {
+      console.log('*** Application settings not found - launching in setup mode ***'.yellow.bold);
+    }
   });
 });
 
@@ -118,7 +127,7 @@ app.get('*', (req, res) => {
  * Start Express server.
  */
 server.listen(app.get('port'), function() {
-  console.log('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
+  console.log('Server listening on port %d in %s mode'.green, app.get('port'), app.get('env'));
 });
 
 module.exports = app;

@@ -15,7 +15,7 @@ socket = {
 io.on('connection', function(client) {
 
   clients[client.id] = client;
-  console.log("Total clients connected:", Object.keys(clients).length);
+  console.log("Clients connected: %d".blue, Object.keys(clients).length);
 
   socket.emitSensorData();
   socket.emitSettings();
