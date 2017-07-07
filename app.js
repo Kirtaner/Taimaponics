@@ -5,6 +5,7 @@ const VERSION = '0.1.0';
  */
 const colors = require('colors');
 const path = require('path');
+const fs = require('fs');
 const express = require('express');
 const compress = require('compression');
 const bodyParser = require('body-parser');
@@ -20,7 +21,15 @@ const expressjwt = require('express-jwt');
 // var lusca = require('lusca');
 // var MongoStore = require('connect-mongo')(session);
 
-console.log('*** Launching Taimaponics v%s ***'.green.bgBlack.bold, VERSION);
+const titleBlock = `
+#####################################
+#                                   #
+# * * * * Taimaponics ${VERSION} * * * * #
+#                                   #
+#####################################
+`;
+// console.log(`*** Launching Taimaponics v${VERSION} ***`.green.bgBlack.bold);
+console.log(titleBlock.green.bgBlack.bold);
 
 /**
  * Load environment variables from .env file, and load configuration
@@ -53,6 +62,7 @@ mongoose.connection.on('connected', function (ref) {
   settings.load(function(data) {
     global.settings = data;
 
+    // firstRun is set if no Mongo collection is returned
     if (global.settings.firstRun) {
       console.log('*** Application settings not found - launching in setup mode ***'.yellow.bold);
     }

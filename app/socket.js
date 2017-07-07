@@ -3,10 +3,11 @@ const serial = global.serial;
 
 let clients = {};
 
-socket = {
+Socket = {
   emitSensorData() {
     io.emit('sensors', serial.sensors);
   },
+
   emitSettings() {
     io.emit('settings', global.settings);
   }
@@ -17,8 +18,8 @@ io.on('connection', function(client) {
   clients[client.id] = client;
   console.log("Clients connected: %d".blue, Object.keys(clients).length);
 
-  socket.emitSensorData();
-  socket.emitSettings();
+  Socket.emitSensorData();
+  Socket.emitSettings();
 
   client.on('disconnect', function() {
     delete clients[client.id];
@@ -35,4 +36,4 @@ io.on('connection', function(client) {
 
 });
 
-setInterval(socket.emitSensorData, 2000);
+setInterval(Socket.emitSensorData, 2000);

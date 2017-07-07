@@ -3,37 +3,34 @@ const Log = require('./models/log');
 const io = global.io;
 const serial = global.serial;
 
-const logger = {};
+Logger = {
+  writeLog(time, data) {
+    let logEntry = new Log();
 
-logger.writeLog = function(time, data) {
-  let logEntry = new Log();
+    logEntry.time = time;
+    logEntry.sensors = data;
 
-  logEntry.time = time;
-  logEntry.sensors = data;
+    logEntry.save( (err) => {
+      if ( err )
+        throw err;
 
-  logEntry.save( (err) => {
-    if ( err )
-      throw err;
+      return;
+    });
+  },
 
+  logSensors() {
+    let currentData = serial.sensors;
+    let currentTime = moment();
+
+    Logger.writeLog(currentTime, currentData);
     return;
-  });
-}
+  },
 
-logger.logSensors = function() {
-  let currentData = serial.sensors;
-  let currentTime = moment();
+  getLogs() {
+    return;
+  }
+};
 
-  logger.writeLog(currentTime, currentData);
-  return;
-}
+const sensorTimer = setInterval(Logger.logSensors, 1000*60*5);
 
-logger.getLogs = function() {
-  return;
-}
-
-// TODO: Make this configurable and cleaner.
-setInterval( function() {
-  logger.logSensors();
-}, 1000*60*5);
-
-module.exports = logger;
+module.exports = Logger;
