@@ -2,12 +2,11 @@ var config = global.config;
 var SerialPort = require("serialport");
 var crypto = require('crypto');
 
-// var relayStatus = "00000000";
 var sensors = {
   roomTemperature: 0,
   relativeHumidity: 0,
   waterTemperature: 0,
-  relays: Array.from("00000000").map(Number)
+  relays: Array.from("00000000").map(convertBoolean)
 };
 
 /**
@@ -21,7 +20,9 @@ port = new SerialPort(config.get('Serial.port'), {
   stopBits: config.get('Serial.stopBits'),
   parity: config.get('Serial.parity'),
 }, function(err) {
-  console.log(err);
+  if (err) {
+    console.log(err);
+  }
 });
 
 port.on("open", function () {
@@ -46,10 +47,18 @@ port.on("open", function () {
   });
 });
 
+function convertBoolean(x) {
+  if(x == '1') {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function updateSensors(data)
 {
   let sensorArray = data.split(" ");
-  let relayArray = Array.from(sensorArray[3].toString()).map(Number);
+  let relayArray = Array.from(sensorArray[3]).map(convertBoolean);
 
   sensors.roomTemperature = sensorArray[0];
   sensors.relativeHumidity = sensorArray[1];
@@ -79,11 +88,13 @@ serial = {
   activateRelay(relay) {
     let command = 'o'+relay;
     port.write(command);
+    return sensors.relays;
   },
 
   deactivateRelay(relay) {
     let command = 'c'+relay;
     port.write(command);
+    return sensors.relays;
   },
 
   getRelayStatus() {
